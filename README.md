@@ -98,7 +98,7 @@ See `docs/sample_output.md` for a complete analysis report. Key sections include
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/AI-Powered-Due-Diligence-Assistant.git
+git clone https://github.com/Sumanth1997/AI-Powered-Due-Diligence-Assistant.git
 cd AI-Powered-Due-Diligence-Assistant
 ```
 
