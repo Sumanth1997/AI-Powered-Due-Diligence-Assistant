@@ -4,6 +4,17 @@ An AI-powered platform that automates pitch deck analysis for venture capital du
 
 ![Sago Architecture](docs/images/architecture_diagram.png)
 
+## � Screenshots
+
+### Analysis Dashboard
+![Analysis](docs/images/Analysis.png)
+
+### Investor Management
+![Investors](docs/images/investor.png)
+
+### Email Integration
+![Gmail](docs/images/Email.png)
+
 ## ✨ Features
 
 - **📄 Pitch Deck Analysis** - Upload PDF or text files for automated analysis
