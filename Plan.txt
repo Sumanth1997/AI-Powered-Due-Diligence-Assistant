@@ -1,0 +1,97 @@
+Sago: AI-Powered Due Diligence Assistant
+
+Technical Implementation Plan for Agentic AI Systems
+
+Executive Summary
+
+Sago is an AI-driven assistant designed for venture capital and private equity investors to bridge the information gap during deal evaluation. It autonomously deconstructs startup pitch decks, verifies claims against external data sources, and generates strategic, personalized questions for founder interviews. The system leverages a multi-agent architecture (CrewAI), a high-concurrency orchestrator (Go), and seamless integration with existing investor workflows (Gmail/Slack) to provide immediate, deep-dive analysis of any incoming investment opportunity.
+
+1. System Architecture
+
+The platform is designed as a distributed, asynchronous system to handle long-running research tasks without impacting user experience.
+
+The Orchestration Layer (Golang)
+
+The Go backend manages the lifecycle of a "Due Diligence Job."
+
+Concurrency Management: Uses Goroutines to handle simultaneous PDF uploads and webhook triggers from Gmail/Slack.
+
+Integrations: Connects to the Gmail API to detect incoming decks and the Slack SDK to deliver reports directly into the investor's deal-flow channels.
+
+State Management: Tracks the progress of the agents, allowing the investor to see "Live Research Logs" via WebSockets.
+
+The Agentic Engine (Python & CrewAI)
+
+The core "Intelligence" is a Python microservice executing an Adversarial Multi-Agent Loop.
+
+Role-Based Agents: Defines a "Digital Due Diligence Team" where agents are incentivized to find discrepancies.
+
+Tool Usage: Equipped with SerperDevTool (Search), ScrapeWebsiteTool, and custom FinancialParserTool to extract and verify data.
+
+Hyper-Personalization: The engine pulls the user's "Investor Persona" from the Vector Database to tailor the final questions to their specific style.
+
+The Personalization Engine (Vector DB)
+
+Investor Memory: Stores embeddings of the investor's previous investment memos, successful deal profiles, and common "deal-breaker" criteria in Pinecone.
+
+Contextual Injection: Dynamically adjusts the "Lead Analyst" agent’s goals based on the specific investor's historical focus areas.
+
+2. Agentic Workflow: The Forensic Loop
+
+The system executes three specialized tasks in a sequential, collaborative chain:
+
+Task 1: Claim Extraction & Deconstruction (The Scribe)
+
+Action: Uses Vision-LLMs to extract every specific claim from the PDF (e.g., "TAM is $40B," "Ex-OpenAI team," "20% MoM growth").
+
+Output: A structured JSON "Claim Map."
+
+Task 2: External Verification (The Forensic Researcher)
+
+Action: For every claim in the "Claim Map," this agent performs targeted web searches to find supporting or contradicting evidence.
+
+Output: A "Verification Report" citing sources like LinkedIn, Crunchbase, Gartner, or academic journals.
+
+Task 3: Strategic Gap Analysis (The Adversarial Analyst)
+
+Action: Synthesizes the Pitch Deck claims against the Verification Report. It looks for "missing" information (e.g., no mention of a major competitor) and logical fallacies.
+
+Output: A final report containing:
+
+Verified Facts: Confidence scores for key claims.
+
+Red Flags: Explicit contradictions or unverified bold claims.
+
+The "Founder Interrogation": A list of 5-10 high-impact questions designed to test the founder's depth of knowledge and honesty.
+
+3. Seamless Integration Strategy
+
+To ensure Sago is used daily, it integrates into the investor's existing "Inbox-first" workflow.
+
+Gmail Integration
+
+Trigger: Automatically scans emails for PDF attachments from unknown senders or with keywords like "Pitch" or "Deck."
+
+Response: Sago drafts a "Preliminary Analysis" in the investor's email thread or saves a private report to Google Drive.
+
+Slack Integration
+
+Command: /sago verify [PDF_URL] or simply uploading a PDF to a private channel.
+
+Output: Interactive Slack Cards with "Expandable Deep Dives" into specific data points.
+
+4. Technical Stack & Security
+
+Backend: Go (Echo Framework) for high-performance API routing.
+
+Agent Engine: Python 3.13 with CrewAI and Pydantic (for structured output).
+
+Persistence: PostgreSQL (metadata), Redis (task queue), Pinecone (embeddings).
+
+Security: Multi-tenant isolation ensuring Investor A’s thesis data never influences Investor B’s analysis. All documents are processed in a secure sandbox.
+
+5. Deployment & Scalability
+
+Scaling: Python workers scale horizontally on AWS Fargate based on Redis queue depth.
+
+Monitoring: Use of LangSmith to trace agent "thoughts" and debug where agents might be getting stuck in research loops.

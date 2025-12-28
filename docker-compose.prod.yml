@@ -1,0 +1,93 @@
+# Production Docker Compose
+# Deploys all services for production
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: sago-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-sago}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-sago}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend-go/db/migrations/001_init.sql:/docker-entrypoint-initdb.d/001_init.sql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U sago" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Redis Queue
+  redis:
+    image: redis:7-alpine
+    container_name: sago-redis
+    restart: always
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Go Backend API
+  backend:
+    build:
+      context: ./backend-go
+      dockerfile: Dockerfile
+    container_name: sago-backend
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-sago}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-sago}?sslmode=disable
+      REDIS_URL: redis://redis:6379
+      GCS_BUCKET: ${GCS_BUCKET}
+      GOOGLE_APPLICATION_CREDENTIALS: /app/service-account.json
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Python Worker
+  worker:
+    build:
+      context: ./engine-python
+      dockerfile: Dockerfile
+    container_name: sago-worker
+    restart: always
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-sago}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-sago}?sslmode=disable
+      REDIS_URL: redis://redis:6379
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      SERPER_API_KEY: ${SERPER_API_KEY}
+      PINECONE_API_KEY: ${PINECONE_API_KEY}
+      PINECONE_ENV: ${PINECONE_ENV}
+      PINECONE_INDEX: ${PINECONE_INDEX}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sago-frontend
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      API_URL: http://backend:8080
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  redis_data:

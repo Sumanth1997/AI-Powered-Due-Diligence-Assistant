@@ -1,0 +1,7 @@
+crewai
+pydantic
+python-dotenv
+langchain
+langchain-community
+crewai-tools
+PyPDF2

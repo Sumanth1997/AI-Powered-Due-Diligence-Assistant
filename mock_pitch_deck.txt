@@ -1,0 +1,110 @@
+Shopify Pitch Deck - Text Context Extraction
+
+--- PAGE 1: Title & Dashboard Preview ---
+Brand: Shopify
+Context: Pitch Deck Makeover by Deyan Kenarny.
+Visuals: E-commerce dashboard showing "Buddies™", "Total spent: $156.22", "Total sales: $1,268.60".
+
+--- PAGE 2: Key Traction Metrics ---
+
+Active Shopify Merchants: 200,000+
+
+Gross Merchandise Volume (GMV) in Q3 '15: $1.9B+
+
+--- PAGE 3: The Origin Story (Snowdevil) ---
+
+Context: Founders Tobi and Scott started with an online/brick-and-mortar snowboard shop called Snowdevil.
+
+Value Prop: "One Platform, Every Channel, Any Device."
+
+--- PAGE 4: Core Product Features ---
+
+Single Integrated Back Office: Shipping, Order Management, Inventory, Payments, Apps, Promotions, Analytics.
+
+--- PAGE 5: Multi-Channel Platform ---
+
+Capabilities: Powering all sales channels (Online, Retail, Mobile).
+
+Summary: Everything integrated into a single, simple-to-use back office.
+
+--- PAGE 6: Pricing & Market Segmentation ---
+
+Basic: $29/mo (Entrepreneurs)
+
+Professional: $79/mo (SMB)
+
+Unlimited: $179/mo (Enterprise/Shopify Plus)
+
+--- PAGE 7: Social Proof / Build-a-Business Success ---
+Total Sold via Shopify by influencers:
+
+Sir Richard Branson: $250M
+
+Daymond John: $100M
+
+Gary Vaynerchuk: $55M
+
+Seth Godin: $12M
+
+Tim Ferriss: $3.5M
+
+--- PAGE 8: Market Opportunity (TAM) ---
+
+Current Core Geographies: $10B
+
+Global Total Addressable Market (TAM): $46B
+
+Source: AMI Partners
+
+--- PAGE 9: Shopify's Unique Recipe ---
+
+Great Technology: Multi-tenant, scalable, high-availability architecture.
+
+Beautiful Design: Limitless customization of themes.
+
+Robust Ecosystem: Hundreds of Apps, Themes, and Experts.
+
+--- PAGE 10: Financial Highlights ---
+
+Growth: Strong, consistent growth in revenue, MRR, and GMV.
+
+Model: Success-based revenue built on a large recurring subscription (SaaS) base.
+
+Focus: Long-term track record of cash management and investment.
+
+--- PAGE 11: GMV Growth History ---
+
+2012: $700M
+
+2013: $1.6B
+
+2014: $3.8B
+
+Drivers: More merchants, higher avg GMV per merchant, introduction of POS (Point of Sale).
+
+--- PAGE 12: Operating Leverage ---
+
+Expense Ratios (G&A, R&D, S&M):
+
+2012: 84%
+
+2013: 79%
+
+2014: 73%
+
+YTD 2015: 60%
+
+--- PAGE 13: Growth Vectors ---
+
+More merchants + GMV
+
+More solutions
+
+More channels
+
+More partners
+
+More international penetration
+
+--- PAGE 14: Mission Statement ---
+"Make commerce better for everyone."

@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Environment files (contain secrets)
+.env
+.env.local
+.env.production
+engine-python/.env
+backend-go/.env
+
+# Credentials (DO NOT COMMIT)
+credentials.json
+token.json
+service-account.json
+*.pem
+*.key
+
+# Build outputs
+backend-go/sago
+frontend/dist/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Output files
+engine-python/outputs/*.md
+engine-python/outputs/*.json
+
+# Uploads
+backend-go/uploads/
+
+# Database
+*.db
+*.sqlite
+
+# Docker
+docker-compose.override.yml
