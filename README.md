@@ -1,4 +1,4 @@
-# 🔍 Sago - AI-Powered Due Diligence Assistant
+# 🔍 AI-Powered Due Diligence Assistant
 
 An AI-powered platform that automates pitch deck analysis for venture capital due diligence. Upload a pitch deck and get a comprehensive report with extracted claims, fact-checked verification, and critical analysis—all powered by multi-agent AI.
 
